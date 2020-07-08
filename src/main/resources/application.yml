@@ -1,0 +1,37 @@
+# 应用配置
+server:
+  port: 8080
+  servlet:
+    context-path: /xue
+
+
+# 数据库连接
+spring:
+  datasource:
+    write:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.1.21:3306/test01?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true
+      username: root
+      password: 123456
+    read:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.1.20:3306/test01?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true
+      username: root
+      password: 123456
+
+# 自定义拦截方法
+define-datasource:
+  intercept-methods:
+    write: insert,update,delete,save,edit
+    read: get,list
+
+## Mybatis配置
+mybatis:
+  type-aliases-package: com.xue.aop.entity
+  mapper-locations: classpath:mapping/*Mapper.xml
+
+# 日志配置
+logging:
+  config: classpath:config/log4j2.xml
+  level:
+    com.xue.aop: info
